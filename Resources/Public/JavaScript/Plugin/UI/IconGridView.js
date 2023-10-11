@@ -2,7 +2,6 @@
 import { UI, Utils } from "@typo3/ckeditor5-bundle.js";
 
 export default class IconGridView extends UI.View {
-
     constructor(locale) {
         super(locale);
         this.tiles = this.createCollection();
@@ -42,19 +41,19 @@ export default class IconGridView extends UI.View {
         });
     }
 
-    createTile(icon, name) {
+    createTile(icon) {
         const tile = new UI.ButtonView(this.locale);
         tile.set({
             label: '',
             withText: false,
-            ariaLabel: name,
-            class: `ck-icon-grid__tile char-icon icon--${icon}`
+            ariaLabel: icon.title,
+            class: `ck-icon-grid__tile ${icon.baseClass} ${icon.keyClassPrefix}${icon.keyClass}`
         });
         // Labels are vital for the users to understand what character they're looking at.
         // For now we're using native title attribute for that, see #5817.
         tile.extendTemplate({
             attributes: {
-                title: name
+                title: icon.title
             },
             on: {
                 mouseover: tile.bindTemplate.to('mouseover'),
@@ -63,13 +62,13 @@ export default class IconGridView extends UI.View {
         });
 
         tile.on('mouseover', () => {
-            this.fire('tileHover', { name, icon });
+            this.fire('tileHover', icon );
         });
         tile.on('focus', () => {
-            this.fire('tileFocus', { name, icon });
+            this.fire('tileFocus', icon );
         });
         tile.on('execute', () => {
-            this.fire('execute', { name, icon });
+            this.fire('execute', icon );
         });
         return tile;
     }

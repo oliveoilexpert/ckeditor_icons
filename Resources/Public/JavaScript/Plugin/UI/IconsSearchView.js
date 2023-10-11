@@ -1,5 +1,5 @@
 
-import { UI } from "@typo3/ckeditor5-bundle.js";
+import { UI, Utils } from "@typo3/ckeditor5-bundle.js";
 
 export default class IconsSearchView extends UI.FormHeaderView {
 
@@ -12,9 +12,6 @@ export default class IconsSearchView extends UI.FormHeaderView {
         this.children.add(this.searchInputView);
     }
 
-    /**
-     * Focuses the icon search.
-     */
     focus() {
         this.searchInputView.focus();
     }

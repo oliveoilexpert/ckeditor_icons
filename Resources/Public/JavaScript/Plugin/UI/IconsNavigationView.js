@@ -18,7 +18,7 @@ export default class IconsNavigationView extends UI.FormHeaderView {
     }
 
     focus() {
-        //this.groupDropdownView.focus();
+        this.groupDropdownView.focus();
     }
 
     _createGroupDropdown(groupNames) {
