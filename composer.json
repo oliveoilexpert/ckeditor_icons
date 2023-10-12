@@ -9,7 +9,9 @@
     "ckeditor",
     "typo3",
     "plugin",
-    "editor"
+    "editor",
+    "icons",
+    "fontawesome"
   ],
   "authors": [
     {
