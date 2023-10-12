@@ -1,7 +1,6 @@
+import { FormHeaderView, LabeledFieldView, createLabeledInputText } from "@ckeditor/ckeditor5-ui";
 
-import { UI, Utils } from "@typo3/ckeditor5-bundle.js";
-
-export default class IconsSearchView extends UI.FormHeaderView {
+export default class IconsSearchView extends FormHeaderView {
 
     constructor(locale) {
         super(locale);
@@ -16,7 +15,7 @@ export default class IconsSearchView extends UI.FormHeaderView {
         this.searchInputView.focus();
     }
     _createSearchInput( label ) {
-        const input = new UI.LabeledFieldView( this.locale, UI.createLabeledInputText );
+        const input = new LabeledFieldView( this.locale, createLabeledInputText );
         input.label = label;
         input.fieldView.on('input', evt => {
             input.fieldView.value = evt.source.element.value;

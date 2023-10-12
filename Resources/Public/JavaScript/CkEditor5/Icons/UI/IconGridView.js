@@ -1,7 +1,7 @@
+import { View, ButtonView, addKeyboardHandlingForGrid } from "@ckeditor/ckeditor5-ui";
+import { FocusTracker, KeystrokeHandler, global } from "@ckeditor/ckeditor5-utils";
 
-import { UI, Utils } from "@typo3/ckeditor5-bundle.js";
-
-export default class IconGridView extends UI.View {
+export default class IconGridView extends View {
     constructor(locale) {
         super(locale);
         this.tiles = this.createCollection();
@@ -26,13 +26,13 @@ export default class IconGridView extends UI.View {
                 ]
             }
         });
-        this.focusTracker = new Utils.FocusTracker();
-        this.keystrokes = new Utils.KeystrokeHandler();
-        UI.addKeyboardHandlingForGrid({
+        this.focusTracker = new FocusTracker();
+        this.keystrokes = new KeystrokeHandler();
+        addKeyboardHandlingForGrid({
             keystrokeHandler: this.keystrokes,
             focusTracker: this.focusTracker,
             gridItems: this.tiles,
-            numberOfColumns: () => Utils.global$1.window
+            numberOfColumns: () => global.window
                 .getComputedStyle(this.element.firstChild) // Responsive .ck-character-grid__tiles
                 .getPropertyValue('grid-template-columns')
                 .split(' ')
@@ -42,12 +42,12 @@ export default class IconGridView extends UI.View {
     }
 
     createTile(icon) {
-        const tile = new UI.ButtonView(this.locale);
+        const tile = new ButtonView(this.locale);
         tile.set({
             label: '',
             withText: false,
             ariaLabel: icon.title,
-            class: `ck-icon-grid__tile ${icon.baseClass} ${icon.keyClassPrefix}${icon.keyClass}`
+            class: `ck-icon-grid__tile`
         });
         // Labels are vital for the users to understand what character they're looking at.
         // For now we're using native title attribute for that, see #5817.
@@ -60,7 +60,9 @@ export default class IconGridView extends UI.View {
                 focus: tile.bindTemplate.to('focus')
             }
         });
-
+        tile.on('render', () => {
+            tile.element.innerHTML += `<span class="ck-reset_all-excluded"><i class="${icon.baseClass} ${icon.keyClassPrefix}${icon.keyClass}"></i></span>`;
+        });
         tile.on('mouseover', () => {
             this.fire('tileHover', icon );
         });

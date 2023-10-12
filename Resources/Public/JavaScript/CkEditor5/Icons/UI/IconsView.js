@@ -1,6 +1,7 @@
-import { UI, Utils } from "@typo3/ckeditor5-bundle.js";
+import { View, FocusCycler } from "@ckeditor/ckeditor5-ui";
+import { FocusTracker, KeystrokeHandler } from "@ckeditor/ckeditor5-utils";
 
-export default class IconsView extends UI.View {
+export default class IconsView extends View {
 
     constructor(locale, navigationView, searchView, gridView, infoView) {
         super(locale);
@@ -9,9 +10,9 @@ export default class IconsView extends UI.View {
         this.gridView = gridView;
         this.infoView = infoView;
         this.items = this.createCollection();
-        this.focusTracker = new Utils.FocusTracker();
-        this.keystrokes = new Utils.KeystrokeHandler();
-        this._focusCycler = new UI.FocusCycler({
+        this.focusTracker = new FocusTracker();
+        this.keystrokes = new KeystrokeHandler();
+        this._focusCycler = new FocusCycler({
             focusables: this.items,
             focusTracker: this.focusTracker,
             keystrokeHandler: this.keystrokes,

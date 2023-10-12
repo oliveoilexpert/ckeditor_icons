@@ -1,12 +1,12 @@
+import { View } from "@ckeditor/ckeditor5-ui";
 
-import { UI } from "@typo3/ckeditor5-bundle.js";
-
-export default class IconInfoView extends UI.View {
+export default class IconInfoView extends View {
     constructor(locale) {
         super(locale);
         const bind = this.bindTemplate;
         this.set('title', null);
         this.set('key', null);
+        this.set('group', null);
         this.setTemplate({
             tag: 'div',
             children: [
@@ -28,19 +28,14 @@ export default class IconInfoView extends UI.View {
                     tag: 'span',
                     attributes: {
                         class: [
-                            'ck-icon-info__code'
+                            'ck-icon-info__group'
                         ]
                     },
                     children: [
-/*                        {
-                            tag: 'span',
-                            attributes: {
-                                class: [
-                                    'char-icon',
-                                    bind.to('key', key => key ? `icon--${this.key}` : 'icon--null')
-                                ]
-                            }
-                        }*/
+                        {
+                            // Note: ZWSP to prevent vertical collapsing.
+                            text: bind.to('group', group => group ? group : '\u200B')
+                        }
                     ]
                 }
             ],

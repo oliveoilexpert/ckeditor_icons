@@ -41,14 +41,14 @@
     padding: var(--ck-spacing-small) var(--ck-spacing-large);
     & > * {
         font-size: var(--ck-font-size-small);
+        text-transform: uppercase;
     }
     & .ck-icon-info__name {
         max-width: 280px;
         overflow: hidden;
         text-overflow: ellipsis;
-        text-transform: uppercase;
     }
-    & .ck-icon-info__code {
+    & .ck-icon-info__group {
         opacity: .6;
         & > span {
             display: inline-block;

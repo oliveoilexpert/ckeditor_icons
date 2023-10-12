@@ -1,7 +1,7 @@
+import { Model, FormHeaderView, createDropdown, addListToDropdown } from "@ckeditor/ckeditor5-ui";
+import { Collection } from "@ckeditor/ckeditor5-utils";
 
-import { UI, Utils } from "@typo3/ckeditor5-bundle.js";
-
-export default class IconsNavigationView extends UI.FormHeaderView {
+export default class IconsNavigationView extends FormHeaderView {
 
     constructor(locale, groupNames) {
         super(locale);
@@ -24,7 +24,7 @@ export default class IconsNavigationView extends UI.FormHeaderView {
     _createGroupDropdown(groupNames) {
         const locale = this.locale;
         const t = locale.t;
-        const dropdown = UI.createDropdown(locale);
+        const dropdown = createDropdown(locale);
         const groupDefinitions = this._geIconGroupListItemDefinitions(dropdown, groupNames);
         const accessibleLabel = 'Icon categories';
         dropdown.set('value', groupDefinitions.first.model.name);
@@ -41,7 +41,7 @@ export default class IconsNavigationView extends UI.FormHeaderView {
             dropdown.value = evt.source.name;
         });
         dropdown.delegate('execute').to(this);
-        UI.addListToDropdown(dropdown, groupDefinitions, {
+        addListToDropdown(dropdown, groupDefinitions, {
             ariaLabel: accessibleLabel,
             role: 'menu'
         });
@@ -49,9 +49,9 @@ export default class IconsNavigationView extends UI.FormHeaderView {
     }
 
     _geIconGroupListItemDefinitions(dropdown, groupNames) {
-        const groupDefs = new Utils.Collection();
+        const groupDefs = new Collection();
         for (const [name, label] of groupNames) {
-            const model = new UI.Model({
+            const model = new Model({
                 name,
                 label,
                 withText: true,
