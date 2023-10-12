@@ -135,14 +135,7 @@ editor:
 #### 4. Add styles to the CKEditor view so the icons are displayed correctly
 Whatever styling is necessary to display the icons correctly in the frontend also needs to be added to the CKEditor view.
 
-Either add via your CKEditor configuration:
-```yaml
-editor:
-  config:
-    contentsCss:
-      - 'EXT:ext/Resources/Public/Css/icon-font.css'
-```
-or via `ext_localconf`.php:
+In `ext_localconf.php`:
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['ext_icon_font'] = 'EXT:ext/Resources/Public/Css/icon-font.css';
 ```
