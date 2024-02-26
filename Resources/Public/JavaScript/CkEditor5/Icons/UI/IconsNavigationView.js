@@ -1,4 +1,4 @@
-import { Model, FormHeaderView, createDropdown, addListToDropdown } from "@ckeditor/ckeditor5-ui";
+import { ViewModel, FormHeaderView, createDropdown, addListToDropdown } from "@ckeditor/ckeditor5-ui";
 import { Collection } from "@ckeditor/ckeditor5-utils";
 
 export default class IconsNavigationView extends FormHeaderView {
@@ -51,7 +51,7 @@ export default class IconsNavigationView extends FormHeaderView {
     _geIconGroupListItemDefinitions(dropdown, groupNames) {
         const groupDefs = new Collection();
         for (const [name, label] of groupNames) {
-            const model = new Model({
+            const model = new ViewModel({
                 name,
                 label,
                 withText: true,
