@@ -59,11 +59,9 @@ export default class Icons extends Plugin {
                     name: ICON_TAG,
                     classes: [ ICON_TAG_CLASS ]
                 },
-                model: 'iconTag',
-            })
-            .attributeToAttribute( {
-                view: 'class',
-                model: 'class'
+                model: ( viewElement, { writer } ) => {
+                    return writer.createElement('iconTag', { class: viewElement.getAttribute('class') });
+                }
             });
         editor.conversion.for('dataDowncast')
             .elementToElement({
